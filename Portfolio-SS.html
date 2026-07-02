@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS // SUHANI SINGH — SUBJECT DOSSIER</title>
+<meta name="description" content="Suhani Singh — Academic Content Writer &amp; Student Support Specialist. Assignment guidance, research support, essays, and presentations.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#0a0a0a',
+          panel: '#0d0d0d',
+          panel2: '#121212',
+          line: '#262626',
+          line2: '#1a1a1a',
+          glow: '#39ff88',
+          glowdim: '#1e8f4c',
+          cyan: '#5fe3ff',
+        },
+        fontFamily: {
+          mono: ['"JetBrains Mono"', 'monospace'],
+          disp: ['"Space Grotesk"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --glow:#39ff88;
+    --cyan:#5fe3ff;
+  }
+  html{ scroll-behavior:smooth; }
+  body{
+    background-color:#0a0a0a;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    transition: background-color .35s ease;
+  }
+  ::selection{ background:var(--glow); color:#000; }
+  ::-webkit-scrollbar{ width:8px; height:8px; }
+  ::-webkit-scrollbar-track{ background:#0a0a0a; }
+  ::-webkit-scrollbar-thumb{ background:#262626; border:1px solid #39ff88; }
+
+  .text-glow{ color:var(--glow); text-shadow:0 0 8px rgba(57,255,136,0.55), 0 0 22px rgba(57,255,136,0.18); }
+  .border-glow{ border-color:var(--glow) !important; box-shadow:0 0 12px rgba(57,255,136,0.28); }
+  .glow-dot{ box-shadow:0 0 6px 2px rgba(57,255,136,0.8); }
+
+  .bracket{ position:relative; }
+  .bracket::before, .bracket::after{
+    content:''; position:absolute; width:10px; height:10px; border-color:var(--glow);
+  }
+  .bracket::before{ top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; }
+  .bracket::after{ bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid; }
+
+  .btn-invert{ transition: all .2s ease; }
+  .btn-invert:hover{ background:#fff !important; color:#000 !important; box-shadow:0 0 20px rgba(255,255,255,0.25); }
+
+  .btn-glow{ transition: all .25s ease; }
+  .btn-glow:hover{ background:var(--glow) !important; color:#000 !important; border-color:var(--glow) !important; box-shadow:0 0 24px rgba(57,255,136,0.55); }
+
+  .card-hover{ transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+  .card-hover:hover{ border-color:var(--glow); box-shadow:0 0 30px rgba(57,255,136,0.12); transform:translateY(-2px); }
+
+  .link-underline{ position:relative; }
+  .link-underline::after{
+    content:''; position:absolute; left:0; bottom:-3px; height:1px; width:0%;
+    background:var(--glow); transition:width .25s ease;
+  }
+  .link-underline:hover::after{ width:100%; }
+
+  .bar-track{ background:#141414; border:1px solid #262626; }
+  .bar-fill{ background:linear-gradient(90deg,#1e8f4c,#39ff88); box-shadow:0 0 10px rgba(57,255,136,0.6); width:0%; transition:width 1.4s cubic-bezier(.16,.84,.44,1); }
+
+  .marquee-track{ display:flex; width:max-content; animation: marquee 26s linear infinite; }
+  @keyframes marquee{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+  .blink{ animation:blink 1.4s ease-in-out infinite; }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+  .scan-y{ animation:scanY 2.4s ease-in-out infinite; }
+  @keyframes scanY{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(10px);} }
+
+  #preloader{ transition: opacity .6s ease, visibility .6s ease; }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .noise-line{ height:1px; background:repeating-linear-gradient(90deg,#262626 0 6px, transparent 6px 10px); }
+
+  #net-canvas{ position:absolute; inset:0; width:100%; height:100%; opacity:.55; }
+
+  /* ---------- THEME TOGGLE ---------- */
+  .theme-toggle{ position:relative; width:44px; height:24px; border:1px solid #262626; background:#141414; transition:border-color .2s ease, background .2s ease; }
+  .theme-toggle .knob{ position:absolute; top:2px; left:2px; width:18px; height:18px; background:var(--glow); box-shadow:0 0 8px rgba(57,255,136,0.7); transition:transform .3s cubic-bezier(.16,.84,.44,1), background .3s ease; display:flex; align-items:center; justify-content:center; font-size:9px; color:#000; }
+  html.light .theme-toggle .knob{ transform:translateX(20px); background:#0a0a0a; box-shadow:0 0 8px rgba(10,10,10,0.4); color:var(--glow); }
+
+  /* ---------- FLOATING CV BUTTON ---------- */
+  #cv-float{
+    position:fixed; right:18px; bottom:18px; z-index:60;
+    opacity:0; transform:translateY(40px) scale(.92);
+    transition: opacity .6s cubic-bezier(.16,.84,.44,1), transform .6s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease, background .25s ease, color .25s ease;
+    pointer-events:none;
+  }
+  #cv-float.in{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  #cv-float:hover{ background:var(--glow); color:#000; box-shadow:0 0 28px rgba(57,255,136,0.55); }
+  @media (max-width:640px){
+    #cv-float{ right:12px; bottom:12px; }
+    #cv-float .cv-label{ display:none; }
+  }
+
+  /* ================= LIGHT THEME OVERRIDES ================= */
+  html.light body{
+    background-color:#f3f2ec;
+    background-image:
+      linear-gradient(rgba(10,10,10,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,10,10,0.04) 1px, transparent 1px);
+  }
+  html.light ::-webkit-scrollbar-track{ background:#f3f2ec; }
+  html.light ::-webkit-scrollbar-thumb{ background:#d8d6cc; border:1px solid #0a8f4a; }
+
+  html.light .bg-void{ background-color:#f3f2ec !important; }
+  html.light .bg-panel{ background-color:#ebe9e1 !important; }
+  html.light .bg-panel2{ background-color:#e2e0d6 !important; }
+  html.light .bg-line{ background-color:#d8d6cc !important; }
+  html.light .bg-line2{ background-color:#dedcd1 !important; }
+
+  html.light .border-line{ border-color:#d8d6cc !important; }
+  html.light .border-line2{ border-color:#e0ded4 !important; }
+  html.light .border-white{ border-color:#111111 !important; }
+  html.light .divide-line > *+*{ border-color:#d8d6cc !important; }
+
+  html.light .text-white{ color:#111111 !important; }
+  html.light .text-gray-300{ color:#2c2b27 !important; }
+  html.light .text-gray-400{ color:#4c4b45 !important; }
+  html.light .text-gray-500{ color:#6b6a62 !important; }
+  html.light .text-gray-600{ color:#84837a !important; }
+  html.light .text-black{ color:#111111 !important; }
+  html.light .bg-gray-500{ background-color:#84837a !important; }
+
+  html.light .text-glow{ color:#0a8f4a; text-shadow:0 0 6px rgba(10,143,74,0.28), 0 0 14px rgba(10,143,74,0.12); }
+  html.light .border-glow{ border-color:#0a8f4a !important; box-shadow:0 0 10px rgba(10,143,74,0.2); }
+  html.light .glow-dot{ box-shadow:0 0 6px 2px rgba(10,143,74,0.6); }
+  html.light .border-glowdim{ border-color:#0a8f4a !important; }
+  html.light .bg-glow{ background-color:#0a8f4a !important; }
+
+  html.light #net-canvas{ opacity:.4; }
+  html.light header{ background-color:rgba(243,242,236,0.85) !important; }
+  html.light #mobile-menu{ background-color:#f3f2ec !important; }
+
+  html.light .btn-invert:hover{ background:#111111 !important; color:#fff !important; box-shadow:0 0 20px rgba(0,0,0,0.15); }
+  html.light .btn-glow:hover{ background:#0a8f4a !important; color:#fff !important; border-color:#0a8f4a !important; box-shadow:0 0 22px rgba(10,143,74,0.35); }
+  html.light .card-hover:hover{ border-color:#0a8f4a; box-shadow:0 0 24px rgba(10,143,74,0.1); }
+  html.light .link-underline::after{ background:#0a8f4a; }
+  html.light .bar-track{ background:#e8e6dc; border-color:#d8d6cc; }
+  html.light .bar-fill{ background:linear-gradient(90deg,#0a8f4a,#39ff88); box-shadow:0 0 8px rgba(10,143,74,0.4); }
+  html.light ::selection{ background:#0a8f4a; color:#fff; }
+
+  html.light .theme-toggle{ border-color:#d8d6cc; background:#e8e6dc; }
+  html.light #cv-float{ background:#f3f2ec; border-color:#111111 !important; }
+  html.light #cv-float:hover{ background:#0a8f4a; color:#fff; }
+
+  @media (max-width:640px){
+    .marquee-track{ animation-duration:16s; }
+  }
+</style>
+</head>
+
+<body class="bg-void text-gray-300 font-mono antialiased">
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="fixed inset-0 z-[100] bg-void flex flex-col items-center justify-center px-6">
+  <div class="w-full max-w-md">
+    <p class="text-[11px] tracking-[0.3em] text-gray-500 mb-2">INITIALIZING SESSION</p>
+    <h1 class="font-disp text-3xl sm:text-4xl text-white mb-6 tracking-tight">MISS SUHANI SINGH</h1>
+    <div class="flex items-center justify-between text-[11px] tracking-[0.2em] text-glow mb-2">
+      <span id="load-status">LOADING PORTFOLIO</span>
+      <span id="load-pct">0%</span>
+    </div>
+    <div class="w-full h-[3px] bg-line2 border border-line overflow-hidden">
+      <div id="load-bar" class="h-full bg-glow" style="width:0%; box-shadow:0 0 10px rgba(57,255,136,0.8);"></div>
+    </div>
+    <p class="text-[10px] text-gray-600 mt-4 tracking-widest">SS-AUS-2026 // SECURE CHANNEL ESTABLISHING...</p>
+  </div>
+</div>
+
+<!-- ============ FLOATING CV BUTTON ============ -->
+<a id="cv-float" href="#" download
+   class="bracket flex items-center gap-2 border border-white bg-void px-4 py-3 text-[11px] tracking-[0.15em] text-white">
+  <i class="fa-solid fa-arrow-down"></i>
+  <span class="cv-label">DOSSIER / CV</span>
+</a>
+
+<!-- ============ NAVBAR ============ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-line bg-void/85 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-2 group">
+      <div class="w-9 h-9 border border-glowdim flex items-center justify-center text-glow text-xs group-hover:border-glow transition-colors">SS</div>
+      <span class="hidden sm:block text-xs tracking-[0.25em] text-gray-400">SUHANI&nbsp;SINGH</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 text-[11px] tracking-[0.2em] text-gray-400">
+      <a href="#about" class="link-underline hover:text-white transition-colors">ABOUT</a>
+      <a href="#work" class="link-underline hover:text-white transition-colors">WORK</a>
+      <a href="#certs" class="link-underline hover:text-white transition-colors">CERTS</a>
+      <a href="#skills" class="link-underline hover:text-white transition-colors">SKILLS</a>
+      <a href="#contact" class="link-underline hover:text-white transition-colors">CONTACT</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 border border-line px-3 py-1.5">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-glow opacity-60"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-glow glow-dot"></span>
+        </span>
+        <span class="text-[10px] tracking-[0.2em] text-glow">ONLINE</span>
+      </div>
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <span class="knob"><i id="theme-icon" class="fa-solid fa-moon"></i></span>
+      </button>
+
+      <button id="menu-btn" class="md:hidden w-9 h-9 border border-line flex items-center justify-center text-gray-400" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars text-xs"></i>
+      </button>
+    </div>
+  </div>
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden border-t border-line bg-void px-5 py-4 flex flex-col gap-4 text-xs tracking-[0.2em] text-gray-400">
+    <a href="#about" class="hover:text-glow">ABOUT</a>
+    <a href="#work" class="hover:text-glow">WORK</a>
+    <a href="#certs" class="hover:text-glow">CERTS</a>
+    <a href="#skills" class="hover:text-glow">SKILLS</a>
+    <a href="#contact" class="hover:text-glow">CONTACT</a>
+  </div>
+</header>
+
+<main class="pt-16">
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative border-b border-line overflow-hidden">
+  <canvas id="net-canvas"></canvas>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+
+    <!-- terminal ticker bar -->
+    <div class="flex flex-wrap items-center justify-between gap-2 py-3 border-b border-line2 text-[10px] tracking-[0.15em] text-gray-500">
+      <span>FILE: <span class="text-gray-300">SS-AUS-2026</span></span>
+      <span id="clock" class="text-glow">00:00:00</span>
+      <span class="hidden sm:inline">STATUS: <span class="text-glow">DECRYPTED</span></span>
+    </div>
+
+    <div class="py-20 sm:py-28 lg:py-36">
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="border border-glowdim text-glow text-[10px] tracking-[0.15em] px-3 py-1.5 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-glow glow-dot"></span>AVAILABLE</span>
+        <span class="border border-line text-gray-400 text-[10px] tracking-[0.15em] px-3 py-1.5 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>CONTENT CREATOR | WRITER</span>
+        <span class="border border-line text-gray-400 text-[10px] tracking-[0.15em] px-3 py-1.5 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>ADELAIDE, AUSTRALIA</span>
+      </div>
+
+      <h1 class="font-disp leading-[0.95] text-white">
+        <span class="block text-[13vw] sm:text-6xl lg:text-8xl tracking-tight">SUHANI</span>
+        <span class="block text-[13vw] sm:text-6xl lg:text-8xl tracking-tight text-transparent" style="-webkit-text-stroke:1.5px #39ff88;">SINGH</span>
+      </h1>
+
+      <p class="mt-8 max-w-xl text-sm sm:text-base text-gray-400 leading-relaxed">
+        Academic content writer and student support specialist, helping
+        students move from a blank page to a submitted, well-researched piece
+        of work — on time, every time.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-6">
+        <a href="#work" class="btn-glow bracket inline-flex items-center gap-3 border border-glowdim px-6 py-3 text-xs tracking-[0.2em] text-glow">
+          VIEW CASE FILES <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#contact" class="text-xs tracking-[0.2em] text-gray-400 link-underline hover:text-white">INITIATE CONTACT</a>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 py-4 border-t border-line2 text-[10px] tracking-[0.15em] text-gray-500">
+      <span>34.9285° S&nbsp;&nbsp;138.6007° E — ADELAIDE</span>
+      <span class="flex items-center gap-2">
+        SCROLL
+        <i class="fa-solid fa-chevron-down scan-y text-glow"></i>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 SUBJECT PROFILE ============ -->
+<section id="about" class="border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal py-6 border-b border-line flex items-center justify-between">
+      <h2 class="text-xs sm:text-sm tracking-[0.3em] text-white">01&nbsp;//&nbsp;SUBJECT PROFILE</h2>
+      <span class="hidden sm:block text-[10px] tracking-[0.2em] text-gray-600">CLEARANCE: LEVEL-5</span>
+    </div>
+
+    <div class="grid lg:grid-cols-5">
+      <!-- left: profile frame -->
+      <div class="reveal lg:col-span-2 border-b lg:border-b-0 lg:border-r border-line p-6 sm:p-10 flex flex-col items-center justify-center">
+        <div class="bracket relative w-full max-w-[280px] aspect-[4/5] border border-line2 bg-panel flex items-center justify-center overflow-hidden">
+          <img src="https://res.cloudinary.com/ccdpjfyf/image/upload/v1782979633/suhani-007_bbbtvb.jpg" alt="Portrait of Suhani Singh" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity">
+          <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(10,10,10,0) 40%, rgba(10,10,10,0.9) 100%);"></div>
+          <div class="absolute top-3 left-3 text-[9px] tracking-[0.2em] text-glow">● REC</div>
+          <div class="absolute top-3 right-3 text-[9px] tracking-[0.2em] text-gray-400">HUD-04</div>
+          <div class="absolute bottom-3 left-3 right-3 text-[9px] tracking-[0.15em] text-gray-300">
+            ACADEMIC SUPPORT SPECIALIST — LEVEL-5<br>
+            <span class="text-gray-500">CLEARANCE VERIFIED</span>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-3 gap-2 w-full max-w-[280px] text-[9px] tracking-[0.15em] text-gray-500">
+          <div class="border border-line2 py-2 text-center">SCAN<br><span class="text-glow">OK</span></div>
+          <div class="border border-line2 py-2 text-center">SYNC<br><span class="text-glow">100%</span></div>
+          <div class="border border-line2 py-2 text-center">RISK<br><span class="text-glow">LOW</span></div>
+        </div>
+      </div>
+
+      <!-- right: metadata + bio -->
+      <div class="reveal lg:col-span-3 p-6 sm:p-10">
+        <div class="grid sm:grid-cols-2 gap-5 mb-10">
+          <div class="border border-line2 p-4">
+            <p class="text-[9px] tracking-[0.2em] text-gray-600 mb-1">DESIGNATION</p>
+            <p class="text-white text-sm">Academic Content Writer</p>
+          </div>
+          <div class="border border-line2 p-4">
+            <p class="text-[9px] tracking-[0.2em] text-gray-600 mb-1">SPECIALITY</p>
+            <p class="text-white text-sm">Academic Writing &amp; Research Support</p>
+          </div>
+          <div class="border border-line2 p-4">
+            <p class="text-[9px] tracking-[0.2em] text-gray-600 mb-1">ORIGIN</p>
+            <p class="text-white text-sm">Adelaide, Australia</p>
+          </div>
+          <div class="border border-line2 p-4">
+            <p class="text-[9px] tracking-[0.2em] text-gray-600 mb-1">STATUS</p>
+            <p class="text-glow text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-glow glow-dot"></span>Accepting New Students</p>
+          </div>
+        </div>
+
+        <p class="text-sm sm:text-[15px] leading-relaxed text-gray-400 mb-4">
+          I work directly with students to make academic work manageable —
+          breaking down confusing assignment briefs, structuring research,
+          and shaping essays, reports, and case studies that are clear,
+          well-argued, and properly referenced.
+        </p>
+        <p class="text-sm sm:text-[15px] leading-relaxed text-gray-400 mb-8">
+          From a single deadline crunch to ongoing consultation across a
+          semester, I'm available around the clock to help you get from a
+          confusing brief to a finished, confident submission.
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-10">
+          <span class="border border-line2 text-gray-300 text-[10px] tracking-[0.1em] px-3 py-1.5">PERSONALIZED ASSIGNMENT GUIDANCE</span>
+          <span class="border border-line2 text-gray-300 text-[10px] tracking-[0.1em] px-3 py-1.5">IN-DEPTH RESEARCH &amp; ACADEMIC SUPPORT</span>
+          <span class="border border-line2 text-gray-300 text-[10px] tracking-[0.1em] px-3 py-1.5">ESSAYS, REPORTS &amp; CASE-STUDY GUIDANCE</span>
+          <span class="border border-line2 text-gray-300 text-[10px] tracking-[0.1em] px-3 py-1.5">PRESENTATION &amp; POWERPOINT SUPPORT</span>
+          <span class="border border-line2 text-gray-300 text-[10px] tracking-[0.1em] px-3 py-1.5">24/7 STUDENT SUPPORT &amp; CONSULTATION</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="border-b border-line py-4 overflow-hidden bg-panel">
+  <div class="marquee-track text-white/90 font-disp text-xl sm:text-2xl tracking-tight">
+    <span class="flex items-center px-4">ASSIGNMENT GUIDANCE&nbsp;<span class="text-glow px-3">//</span>ACADEMIC RESEARCH&nbsp;<span class="text-glow px-3">//</span>ESSAYS &amp; CASE STUDIES&nbsp;<span class="text-glow px-3">//</span>PRESENTATION SUPPORT&nbsp;<span class="text-glow px-3">//</span></span>
+    <span class="flex items-center px-4">ASSIGNMENT GUIDANCE&nbsp;<span class="text-glow px-3">//</span>ACADEMIC RESEARCH&nbsp;<span class="text-glow px-3">//</span>ESSAYS &amp; CASE STUDIES&nbsp;<span class="text-glow px-3">//</span>PRESENTATION SUPPORT&nbsp;<span class="text-glow px-3">//</span></span>
+  </div>
+</section>
+
+<!-- ============ 02 CASE FILES ============ -->
+<section id="work" class="border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal py-6 border-b border-line flex items-center justify-between">
+      <h2 class="text-xs sm:text-sm tracking-[0.3em] text-white">02&nbsp;//&nbsp;CASE FILES</h2>
+      <span class="hidden sm:block text-[10px] tracking-[0.2em] text-gray-600">04 RECORDS FOUND</span>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-2">
+      <!-- card 1 -->
+      <article class="reveal card-hover border-b border-r-0 sm:border-r border-line">
+        <div class="flex items-center justify-between px-6 py-3 border-b border-line2 text-[9px] tracking-[0.2em] text-gray-500">
+          <span>FILE #001</span><span class="text-glow">COMPLETED</span><span>2026</span>
+        </div>
+        <div class="aspect-[16/10] border-b border-line2 bg-panel2 relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-70" alt="Student working through an assignment brief">
+        </div>
+        <div class="p-6">
+          <span class="text-[9px] tracking-[0.2em] text-glow">ASSIGNMENT GUIDANCE</span>
+          <h3 class="font-disp text-xl text-white mt-2 mb-3">Marketing Assignment — Undergraduate</h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-5">Broke down a dense marketing brief into a clear plan, then guided the student through drafting and structuring each section against the rubric.</p>
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">OPEN FILE <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </article>
+
+      <!-- card 2 -->
+      <article class="reveal card-hover border-b border-line">
+        <div class="flex items-center justify-between px-6 py-3 border-b border-line2 text-[9px] tracking-[0.2em] text-gray-500">
+          <span>FILE #002</span><span class="text-glow">COMPLETED</span><span>2025</span>
+        </div>
+        <div class="aspect-[16/10] border-b border-line2 bg-panel2 relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1554177255-61502b352de3?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-70" alt="Research literature spread across a desk">
+        </div>
+        <div class="p-6">
+          <span class="text-[9px] tracking-[0.2em] text-glow">RESEARCH &amp; ACADEMIC SUPPORT</span>
+          <h3 class="font-disp text-xl text-white mt-2 mb-3">Literature Review — Postgraduate</h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-5">Sourced and synthesized peer-reviewed literature into a structured review, helping the student identify gaps and build a defensible argument.</p>
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">OPEN FILE <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </article>
+
+      <!-- card 3 -->
+      <article class="reveal card-hover border-r-0 sm:border-r border-line">
+        <div class="flex items-center justify-between px-6 py-3 border-b border-line2 text-[9px] tracking-[0.2em] text-gray-500">
+          <span>FILE #003</span><span class="text-glow">COMPLETED</span><span>2025</span>
+        </div>
+        <div class="aspect-[16/10] border-b border-line2 bg-panel2 relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-70" alt="Printed report and case study documents">
+        </div>
+        <div class="p-6">
+          <span class="text-[9px] tracking-[0.2em] text-glow">ESSAYS, REPORTS &amp; CASE STUDIES</span>
+          <h3 class="font-disp text-xl text-white mt-2 mb-3">Business Case Study — MBA Cohort</h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-5">Guided analysis of a multi-part business case, shaping findings into a structured report with clear recommendations and citations.</p>
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">OPEN FILE <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </article>
+
+      <!-- card 4 -->
+      <article class="reveal card-hover">
+        <div class="flex items-center justify-between px-6 py-3 border-b border-line2 text-[9px] tracking-[0.2em] text-gray-500">
+          <span>FILE #004</span><span class="text-glow">COMPLETED</span><span>2024</span>
+        </div>
+        <div class="aspect-[16/10] border-b border-line2 bg-panel2 relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-70" alt="Student presenting slides to a small audience">
+        </div>
+        <div class="p-6">
+          <span class="text-[9px] tracking-[0.2em] text-glow">PRESENTATION &amp; POWERPOINT SUPPORT</span>
+          <h3 class="font-disp text-xl text-white mt-2 mb-3">Capstone Defense — Final Year</h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-5">Restructured a dense capstone deck into a clean, presenter-friendly narrative and coached delivery ahead of the final defense.</p>
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">OPEN FILE <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 CLEARANCES ============ -->
+<section id="certs" class="border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal py-6 border-b border-line flex items-center justify-between">
+      <h2 class="text-xs sm:text-sm tracking-[0.3em] text-white">03&nbsp;//&nbsp;CLEARANCES</h2>
+      <span class="hidden sm:block text-[10px] tracking-[0.2em] text-gray-600">03 CREDENTIALS ON FILE</span>
+    </div>
+
+    <div class="divide-y divide-line">
+      <!-- cert 1 -->
+      <div class="reveal grid sm:grid-cols-12 gap-4 sm:gap-6 py-6 items-center">
+        <div class="sm:col-span-2 flex sm:flex-col gap-2 sm:gap-1 items-center sm:items-start justify-between sm:justify-start">
+          <span class="text-[10px] tracking-[0.15em] text-gray-500">CERT #001</span>
+          <span class="text-[10px] tracking-[0.15em] text-gray-600">JAN 2025</span>
+        </div>
+        <div class="sm:col-span-7">
+          <p class="text-[10px] tracking-[0.2em] text-glow mb-1">● COURSERA</p>
+          <h3 class="text-white text-sm sm:text-base mb-1">Academic Writing &amp; Research Methodology</h3>
+          <p class="text-xs sm:text-sm text-gray-500">Certification covering structured argumentation, source evaluation, and formal academic referencing.</p>
+        </div>
+        <div class="sm:col-span-3 sm:text-right">
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">VIEW CREDENTIAL <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </div>
+
+      <!-- cert 2 -->
+      <div class="reveal grid sm:grid-cols-12 gap-4 sm:gap-6 py-6 items-center">
+        <div class="sm:col-span-2 flex sm:flex-col gap-2 sm:gap-1 items-center sm:items-start justify-between sm:justify-start">
+          <span class="text-[10px] tracking-[0.15em] text-gray-500">CERT #002</span>
+          <span class="text-[10px] tracking-[0.15em] text-gray-600">JUL 2024</span>
+        </div>
+        <div class="sm:col-span-7">
+          <p class="text-[10px] tracking-[0.2em] text-glow mb-1">● EDX</p>
+          <h3 class="text-white text-sm sm:text-base mb-1">Advanced Essay, Report &amp; Case-Study Writing</h3>
+          <p class="text-xs sm:text-sm text-gray-500">Practical training in structuring long-form academic writing across essays, formal reports, and case-study analysis.</p>
+        </div>
+        <div class="sm:col-span-3 sm:text-right">
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">VIEW CREDENTIAL <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </div>
+
+      <!-- cert 3 -->
+      <div class="reveal grid sm:grid-cols-12 gap-4 sm:gap-6 py-6 items-center">
+        <div class="sm:col-span-2 flex sm:flex-col gap-2 sm:gap-1 items-center sm:items-start justify-between sm:justify-start">
+          <span class="text-[10px] tracking-[0.15em] text-gray-500">CERT #003</span>
+          <span class="text-[10px] tracking-[0.15em] text-gray-600">NOV 2023</span>
+        </div>
+        <div class="sm:col-span-7">
+          <p class="text-[10px] tracking-[0.2em] text-glow mb-1">● LINKEDIN LEARNING</p>
+          <h3 class="text-white text-sm sm:text-base mb-1">Presentation Design &amp; Public Speaking</h3>
+          <p class="text-xs sm:text-sm text-gray-500">Verified proficiency in structuring presentation decks and coaching confident, clear academic delivery.</p>
+        </div>
+        <div class="sm:col-span-3 sm:text-right">
+          <a href="#" class="link-underline text-xs tracking-[0.15em] text-white inline-flex items-center gap-2">VIEW CREDENTIAL <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 CAPABILITIES ============ -->
+<section id="skills" class="border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal py-6 border-b border-line flex items-center justify-between">
+      <h2 class="text-xs sm:text-sm tracking-[0.3em] text-white">04&nbsp;//&nbsp;CAPABILITIES</h2>
+      <span class="hidden sm:block text-[10px] tracking-[0.2em] text-gray-600">METRIC SCAN ACTIVE</span>
+    </div>
+
+    <div id="skills-grid" class="grid md:grid-cols-2 gap-x-12 gap-y-8 py-10">
+      <div class="reveal skill-row" data-value="93">
+        <div class="flex items-center justify-between mb-2 text-xs tracking-[0.15em]">
+          <span class="text-white">PERSONALIZED ASSIGNMENT GUIDANCE</span>
+          <span class="skill-pct text-glow">00%</span>
+        </div>
+        <div class="bar-track h-2"><div class="bar-fill h-full"></div></div>
+      </div>
+      <div class="reveal skill-row" data-value="90">
+        <div class="flex items-center justify-between mb-2 text-xs tracking-[0.15em]">
+          <span class="text-white">IN-DEPTH RESEARCH &amp; ACADEMIC SUPPORT</span>
+          <span class="skill-pct text-glow">00%</span>
+        </div>
+        <div class="bar-track h-2"><div class="bar-fill h-full"></div></div>
+      </div>
+      <div class="reveal skill-row" data-value="88">
+        <div class="flex items-center justify-between mb-2 text-xs tracking-[0.15em]">
+          <span class="text-white">ESSAYS, REPORTS &amp; CASE-STUDY GUIDANCE</span>
+          <span class="skill-pct text-glow">00%</span>
+        </div>
+        <div class="bar-track h-2"><div class="bar-fill h-full"></div></div>
+      </div>
+      <div class="reveal skill-row" data-value="85">
+        <div class="flex items-center justify-between mb-2 text-xs tracking-[0.15em]">
+          <span class="text-white">PRESENTATION &amp; POWERPOINT SUPPORT</span>
+          <span class="skill-pct text-glow">00%</span>
+        </div>
+        <div class="bar-track h-2"><div class="bar-fill h-full"></div></div>
+      </div>
+      <div class="reveal skill-row" data-value="97">
+        <div class="flex items-center justify-between mb-2 text-xs tracking-[0.15em]">
+          <span class="text-white">24/7 STUDENT SUPPORT &amp; CONSULTATION</span>
+          <span class="skill-pct text-glow">00%</span>
+        </div>
+        <div class="bar-track h-2"><div class="bar-fill h-full"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 LEARN WITH ME ============ -->
+<section id="program" class="border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="reveal py-6 border-b border-line flex items-center justify-between">
+      <h2 class="text-xs sm:text-sm tracking-[0.3em] text-white">05&nbsp;//&nbsp;LEARN WITH ME</h2>
+      <span class="hidden sm:block text-[10px] tracking-[0.2em] text-gray-600">ENROLLMENT OPEN</span>
+    </div>
+
+    <div class="reveal grid lg:grid-cols-5">
+      <div class="lg:col-span-3 p-6 sm:p-10 border-b lg:border-b-0 lg:border-r border-line">
+        <p class="text-[10px] tracking-[0.2em] text-glow mb-3">ONE-TO-ONE SUPPORT PROGRAM</p>
+        <h3 class="font-disp text-2xl sm:text-3xl text-white mb-4">The 35-Day Academic Support Program</h3>
+        <p class="text-sm text-gray-400 leading-relaxed mb-6">
+          A structured, five-week support plan that takes you from an
+          unclear assignment brief to a finished, well-referenced submission —
+          with research, drafting, and presentation coaching built in.
+        </p>
+        <div class="grid grid-cols-3 gap-3 text-[10px] tracking-[0.15em]">
+          <div class="border border-line2 p-3">
+            <p class="text-gray-600 mb-1">DAYS 01–10</p>
+            <p class="text-white">Brief Breakdown &amp; Research</p>
+          </div>
+          <div class="border border-line2 p-3">
+            <p class="text-gray-600 mb-1">DAYS 11–25</p>
+            <p class="text-white">Drafting &amp; Guidance</p>
+          </div>
+          <div class="border border-line2 p-3">
+            <p class="text-gray-600 mb-1">DAYS 26–35</p>
+            <p class="text-white">Polish &amp; Present</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-2 p-6 sm:p-10 flex flex-col justify-center gap-6">
+        <div class="flex items-center justify-between text-xs tracking-[0.15em] border-b border-line2 pb-3">
+          <span class="text-gray-500">DURATION</span><span class="text-white">35 DAYS</span>
+        </div>
+        <div class="flex items-center justify-between text-xs tracking-[0.15em] border-b border-line2 pb-3">
+          <span class="text-gray-500">FORMAT</span><span class="text-white">1:1 / REMOTE</span>
+        </div>
+        <div class="flex items-center justify-between text-xs tracking-[0.15em] border-b border-line2 pb-3">
+          <span class="text-gray-500">NEXT INTAKE</span><span class="text-glow">AUG 2026</span>
+        </div>
+        <a href="#contact" class="btn-glow bracket inline-flex items-center justify-center gap-3 border border-glowdim px-6 py-3.5 text-xs tracking-[0.2em] text-glow">
+          ACCESS THE COURSE <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 INITIATE CONTACT ============ -->
+<section id="contact" class="border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+    <div class="reveal mb-12">
+      <h2 class="text-xs sm:text-sm tracking-[0.3em] text-white mb-4">06&nbsp;//&nbsp;INITIATE CONTACT</h2>
+      <p class="text-sm text-gray-500 max-w-lg">
+        <span class="text-glow">&gt;</span> Transmit your assignment brief using the secure channel below.
+        Support available 24/7.
+      </p>
+    </div>
+
+    <div class="reveal grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn-invert group bg-void p-6 flex flex-col justify-between h-32">
+        <i class="fa-brands fa-linkedin text-xl text-gray-400 group-hover:text-black"></i>
+        <span class="text-xs tracking-[0.15em]">LINKEDIN</span>
+      </a>
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="btn-invert group bg-void p-6 flex flex-col justify-between h-32">
+        <i class="fa-brands fa-instagram text-xl text-gray-400 group-hover:text-black"></i>
+        <span class="text-xs tracking-[0.15em]">INSTAGRAM</span>
+      </a>
+      <a href="https://discord.com" target="_blank" rel="noopener" class="btn-invert group bg-void p-6 flex flex-col justify-between h-32">
+        <i class="fa-brands fa-discord text-xl text-gray-400 group-hover:text-black"></i>
+        <span class="text-xs tracking-[0.15em]">DISCORD</span>
+      </a>
+      <a href="mailto:hello@suhanisingh.dev" class="btn-invert group bg-void p-6 flex flex-col justify-between h-32">
+        <i class="fa-solid fa-envelope text-xl text-gray-400 group-hover:text-black"></i>
+        <span class="text-xs tracking-[0.15em]">EMAIL</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ MASTER FOOTER ============ -->
+<footer class="bg-panel">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] tracking-[0.2em] text-gray-600">
+    <span>SS — AUS — 2026</span>
+    <span>© 2026 SUHANI SINGH. ALL FILES CLASSIFIED.</span>
+    <span class="text-glow">ASSIGNMENTS // RESEARCH // PRESENTATIONS</span>
+  </div>
+</footer>
+
+<script>
+  // ---------- PRELOADER ----------
+  (function(){
+    const bar = document.getElementById('load-bar');
+    const pct = document.getElementById('load-pct');
+    const status = document.getElementById('load-status');
+    const statuses = ['LOADING PORTFOLIO','DECRYPTING ASSETS','MOUNTING CASE FILES','FINALIZING'];
+    let progress = 0;
+    const interval = setInterval(()=>{
+      progress += Math.random()*14 + 6;
+      if(progress >= 100){
+        progress = 100;
+        clearInterval(interval);
+        status.textContent = 'ACCESS GRANTED';
+        setTimeout(()=>{
+          const pre = document.getElementById('preloader');
+          pre.style.opacity = '0';
+          pre.style.visibility = 'hidden';
+          setTimeout(()=>{
+            pre.remove();
+            // float the CV button in once the preloader is gone
+            document.getElementById('cv-float').classList.add('in');
+          }, 700);
+        }, 350);
+      } else {
+        status.textContent = statuses[Math.floor(Math.random()*statuses.length)];
+      }
+      bar.style.width = progress + '%';
+      pct.textContent = Math.floor(progress) + '%';
+    }, 220);
+  })();
+
+  // ---------- MOBILE MENU ----------
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', ()=>{
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.add('hidden')));
+
+  // ---------- THEME TOGGLE (light / dark) ----------
+  (function(){
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+
+    function applyIcon(){
+      const isLight = root.classList.contains('light');
+      icon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+    toggle.addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      applyIcon();
+    });
+    applyIcon();
+  })();
+
+  // ---------- LIVE CLOCK ----------
+  function tickClock(){
+    const el = document.getElementById('clock');
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    const ss = String(now.getSeconds()).padStart(2,'0');
+    el.textContent = `${hh}:${mm}:${ss}`;
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  // ---------- REVEAL ON SCROLL ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12 });
+  revealEls.forEach(el=>revealObserver.observe(el));
+
+  // ---------- SKILL BARS ----------
+  const skillRows = document.querySelectorAll('.skill-row');
+  const skillObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const row = entry.target;
+        const value = parseInt(row.dataset.value, 10);
+        const fill = row.querySelector('.bar-fill');
+        const pctLabel = row.querySelector('.skill-pct');
+        fill.style.width = value + '%';
+        let current = 0;
+        const step = ()=>{
+          current += Math.max(1, Math.round(value/40));
+          if(current >= value){ current = value; }
+          pctLabel.textContent = current + '%';
+          if(current < value) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        skillObserver.unobserve(row);
+      }
+    });
+  }, { threshold:0.4 });
+  skillRows.forEach(row=>skillObserver.observe(row));
+
+  // ---------- PARTICLE NETWORK CANVAS ----------
+  (function(){
+    const canvas = document.getElementById('net-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles;
+    const COUNT = 60;
+    const MAXDIST = 130;
+
+    function resize(){
+      const rect = canvas.parentElement.getBoundingClientRect();
+      w = canvas.width = rect.width;
+      h = canvas.height = rect.height;
+    }
+
+    function init(){
+      resize();
+      particles = Array.from({length: COUNT}, ()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.35,
+        vy: (Math.random()-0.5)*0.35,
+      }));
+    }
+
+    function draw(){
+      const isLight = document.documentElement.classList.contains('light');
+      const dotColor = isLight ? '10,143,74' : '57,255,136';
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = `rgba(${dotColor},0.55)`;
+      for(const p of particles){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < 0 || p.x > w) p.vx *= -1;
+        if(p.y < 0 || p.y > h) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.4, 0, Math.PI*2);
+        ctx.fill();
+      }
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const a = particles[i], b = particles[j];
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist < MAXDIST){
+            ctx.strokeStyle = `rgba(${dotColor},${0.14 * (1-dist/MAXDIST)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    init();
+    draw();
+  })();
+</script>
+</body>
+</html>
